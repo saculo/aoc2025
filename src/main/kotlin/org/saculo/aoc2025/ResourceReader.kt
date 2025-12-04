@@ -7,4 +7,9 @@ object ResourceReader {
         } ?: throw IllegalArgumentException("Resource $fileName not found")
     }
 
+    fun readAsCsv(fileName: String): List<String> {
+        return javaClass.getResourceAsStream("/$fileName")?.bufferedReader()?.use {
+            it.readText().split(",").toList()
+        } ?: throw IllegalArgumentException("Resource $fileName not found")
+    }
 }
